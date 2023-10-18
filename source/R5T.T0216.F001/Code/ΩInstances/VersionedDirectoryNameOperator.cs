@@ -17,3 +17,21 @@ namespace R5T.T0216.F001
         #endregion
     }
 }
+
+
+namespace R5T.T0216.F001.Platform
+{
+    public class VersionedDirectoryNameOperator : IVersionedDirectoryNameOperator
+    {
+        #region Infrastructure
+
+        public static IVersionedDirectoryNameOperator Instance { get; } = new VersionedDirectoryNameOperator();
+
+
+        private VersionedDirectoryNameOperator()
+        {
+        }
+
+        #endregion
+    }
+}

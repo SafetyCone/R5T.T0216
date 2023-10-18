@@ -12,15 +12,20 @@ namespace R5T.T0216.F001
     [FunctionalityMarker]
     public partial interface IVersionedDirectoryPathOperator : IFunctionalityMarker
     {
+#pragma warning disable IDE1006 // Naming Styles
+        public Platform.IVersionedDirectoryPathOperator _Platform => Platform.VersionedDirectoryPathOperator.Instance;
+#pragma warning restore IDE1006 // Naming Styles
+
+
         public IVersionedDirectoryName Get_VersionedDirectoryName(IVersionedDirectoryPath versionedDirectoryPath)
         {
-            var output = Instances.PathOperator.GetDirectoryNameOfDirectoryPath(versionedDirectoryPath.Value)
+            var output = _Platform.Get_VersionedDirectoryName(versionedDirectoryPath.Value)
                 .ToVersionedDirectoryName();
 
             return output;
         }
 
-        public IDictionary<Version, TVersionedDirectoryPath> Get_VersionedDirectoryPathsByVersion<TVersionedDirectoryPath>(
+        public Dictionary<Version, TVersionedDirectoryPath> Get_VersionedDirectoryPathsByVersion<TVersionedDirectoryPath>(
             IEnumerable<TVersionedDirectoryPath> versionedDirectoryPaths)
             where TVersionedDirectoryPath : IVersionedDirectoryPath
         {
@@ -33,9 +38,7 @@ namespace R5T.T0216.F001
 
         public Version Get_Version(IVersionedDirectoryPath versionedDirectoryPath)
         {
-            var directoryName = this.Get_VersionedDirectoryName(versionedDirectoryPath);
-
-            var output = Instances.VersionedDirectoryNameOperator.Get_Version(directoryName);
+            var output = _Platform.Get_Version(versionedDirectoryPath.Value);
             return output;
         }
     }
