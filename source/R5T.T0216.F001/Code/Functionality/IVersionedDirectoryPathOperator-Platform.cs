@@ -14,7 +14,7 @@ namespace R5T.T0216.F001.Platform
     {
         public string Get_VersionedDirectoryName(string versionedDirectoryPath)
         {
-            var output = Instances.PathOperator.GetDirectoryNameOfDirectoryPath(versionedDirectoryPath);
+            var output = Instances.PathOperator.Get_DirectoryName_OfDirectoryPath(versionedDirectoryPath);
             return output;
         }
 
